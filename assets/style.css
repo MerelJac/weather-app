@@ -1,0 +1,16 @@
+* {
+    padding: 10px;
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    max-width: 40vw;
+}
+
+.weather-forcast {
+    display: flex;
+    flex-direction: column;
+    padding-left: 300px;
+}
