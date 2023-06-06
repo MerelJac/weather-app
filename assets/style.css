@@ -14,3 +14,15 @@
     flex-direction: column;
     padding-left: 300px;
 }
+
+#currentWeather {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#futureWeather {
+    display: flex;
+    flex-direction: column;
+}
+

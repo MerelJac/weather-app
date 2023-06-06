@@ -25,7 +25,7 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                 .then(function (currentData){
                     // add city name 
                     var today = dayjs();
-                    $("#date").text(today.format('ddd, MMMM D'));
+                    var currentDate = today.format('ddd, MMMM D');
                     const currentName = currentData.name;
                     const currentIcon = currentData.weather[0].icon;
                     const iconUrl = 'https://openweathermap.org/img/wn/'+ currentIcon +'.png';
@@ -33,7 +33,7 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                     const currentHumidity = JSON.stringify(currentData.main.humidity);
                     const currentWindSpeed = JSON.stringify(currentData.wind.speed);
                     //print to page
-                    currentWeatherSection.innerHTML += `<p>${currentName}</p><img src="${iconUrl}" alt="weatherIconCurrent"><p>Temp: ${currentTemp}</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed}</p>`;})
+                    currentWeatherSection.innerHTML += `<h2>${currentName}</h2><p>${currentDate}</p><img src="${iconUrl}" alt="weatherIconCurrent"><p>Temp: ${currentTemp}</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed}</p>`;})
         // needs the http or you will get a CORS error // 5 day weather
             fetch('http://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon='+ lon + '&limit=5&units=imperial&appid=' + apiKey)
                 .then(function (forcastResponse){
@@ -52,4 +52,3 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                 }) };
 
 submitBtn.addEventListener("click", processData);
-
