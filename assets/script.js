@@ -1,4 +1,5 @@
 var submitBtn = document.querySelector('input[name="submit-button');
+var regenBtn =  document.querySelector('#regenerateButton');
 var locationInput = document.querySelector('input[name="location-input"]');
 var currentWeatherSection = document.querySelector("#currentWeather");
 var futureWeatherSection = document.querySelector("#futureWeather");
@@ -7,9 +8,11 @@ var apiKey = "17476851cd3efca9f4c619dbaa03a7d6";
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
 function processData() {
+regenBtn.style.display = "flex";
 // get input from search bar
 var input = locationInput.value;
-console.log(input);
+// save to local storage
+localStorage.setItem("city", input);
 // convert city name to lat lon
 fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appid=' + apiKey)
 .then(function (locationResponse) {
@@ -51,4 +54,11 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                 futureWeatherSection.innerHTML += `<p>Days Away</p><img src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}</p><p>Humidity: ${forcastHumidity}</p>Wind Speed: ${forcastWindSpeed}</p>`;})
                 }) };
 
+function localStorage() {
+    console.log(localStorage.getItem("city"))
+    }
+
 submitBtn.addEventListener("click", processData);
+// regenerate = print local storage 
+
+

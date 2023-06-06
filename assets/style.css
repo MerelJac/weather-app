@@ -39,4 +39,11 @@
 .infoCurrent {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+#regenerateButton {
+    padding: 10px;
+    margin: 10px;
+    display: none;
 }
