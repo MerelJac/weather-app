@@ -24,6 +24,8 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                 return currentResponse.json()})
                 .then(function (currentData){
                     // add city name 
+                    var today = dayjs();
+                    $("#date").text(today.format('ddd, MMMM D'));
                     const currentName = currentData.name;
                     const currentIcon = currentData.weather[0].icon;
                     const iconUrl = 'https://openweathermap.org/img/wn/'+ currentIcon +'.png';
