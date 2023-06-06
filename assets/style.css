@@ -17,8 +17,12 @@
 
 #currentWeather {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    border: 2px solid black;
+    border-radius: 30px;
+    background-color: silver;
+    opacity: 73%;
 }
 
 #futureWeather {
@@ -26,3 +30,13 @@
     flex-direction: column;
 }
 
+.current {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoCurrent {
+    display: flex;
+    align-items: center;
+}

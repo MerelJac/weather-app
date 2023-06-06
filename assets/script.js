@@ -32,8 +32,8 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                     const currentTemp = JSON.stringify(currentData.main.feels_like);
                     const currentHumidity = JSON.stringify(currentData.main.humidity);
                     const currentWindSpeed = JSON.stringify(currentData.wind.speed);
-                    //print to page
-                    currentWeatherSection.innerHTML += `<h2>${currentName}</h2><p>${currentDate}</p><img src="${iconUrl}" alt="weatherIconCurrent"><p>Temp: ${currentTemp}</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed}</p>`;})
+                    // print to page
+                    currentWeatherSection.innerHTML += `<div class="current"><h2>${currentName}</h2><img src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>${currentDate}</p><p>Temp: ${currentTemp}</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed}</p></div>`;})
         // needs the http or you will get a CORS error // 5 day weather
             fetch('http://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon='+ lon + '&limit=5&units=imperial&appid=' + apiKey)
                 .then(function (forcastResponse){
