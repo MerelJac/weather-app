@@ -32,20 +32,22 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                     const currentWindSpeed = JSON.stringify(currentData.wind.speed);
                     //print to page
                     currentWeatherSection.innerHTML += `<p>${currentName}</p><img src="${iconUrl}" alt="weatherIconCurrent"><p>Temp: ${currentTemp}</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed}</p>`;})
-            
         // needs the http or you will get a CORS error // 5 day weather
             fetch('http://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon='+ lon + '&limit=5&units=imperial&appid=' + apiKey)
                 .then(function (forcastResponse){
                 return forcastResponse.json()})
                 .then(function(forcastData) {
                 console.log(forcastData);
-                })
-        })};
-
-// enter city name into API 
-
-// print contents to page
-
+                // add print data here
+                //add day value 
+                const forcastIcon = forcastData.list[0].weather[0].icon;
+                const forcastIconUrl = 'https://openweathermap.org/img/wn/'+ forcastIcon +'.png';
+                const forcastTemp = JSON.stringify(forcastData.list[0].main.feels_like);
+                const forcastHumidity = JSON.stringify(forcastData.list[0].main.humidity);
+                const forcastWindSpeed = JSON.stringify(forcastData.list[0].wind.speed);
+                //print to page
+                futureWeatherSection.innerHTML += `<p>Days Away</p><img src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}</p><p>Humidity: ${forcastHumidity}</p>Wind Speed: ${forcastWindSpeed}</p>`;})
+                }) };
 
 submitBtn.addEventListener("click", processData);
 
