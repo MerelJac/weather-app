@@ -63,15 +63,21 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                 futureWeatherSection.innerHTML += `<div id="forcastDay"><p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}</p><p>Humidity: ${forcastHumidity}</p>Wind Speed: ${forcastWindSpeed}</p></div>`;}}
                 })})};
 function localStorageRegenerateProcessData() {
-    // CSS Styling
-    savedCitiesSection.style.display = "flex";
-    locationInput.value = "";
-    locationInput.placeholder = "Enter city";
     // save text from input to local storage
     cityInput = $("#currentCityName").text();
     localStorage.setItem("city", cityInput);
     // create button from location storage and print to page
     savedCitiesSection.innerHTML += `<button id"savedCity">${localStorage.getItem("city")}</button>`
+    // clear old sections
+    currentWeatherSection.innerHTML = "";
+    futureWeatherSection.innerHTML = "";
+    // run function again 
+    processData();
+    // CSS Styling
+    savedCitiesSection.style.display = "flex";
+    locationInput.value = "";
+    locationInput.placeholder = "Enter city";
 }
+
 submitBtn.addEventListener("click", processData);
 regenBtn.addEventListener("click", localStorageRegenerateProcessData)
