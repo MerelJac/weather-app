@@ -5,21 +5,31 @@
 }
 .side-bar {
     display: flex;
-    flex-direction: column;
-    max-width: 40vw;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .weather-forcast {
     display: flex;
     flex-direction: column;
-    padding-left: 300px;
 }
 
+.saved-cities {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+}
 #currentWeather {
     display: none;
     flex-direction: column;
     align-items: center;
-    border: 2px solid black;
+    border: 2px solid silver;
     border-radius: 30px;
     background-color: silver;
     opacity: 73%;
@@ -30,8 +40,13 @@
     height: 100px;
 }
 #futureWeather {
-    display: flex;
-    flex-direction: column;
+    display: none;
+    flex-direction: row;
+    border: 2px solid silver;
+    border-radius: 30px;
+    background-color: silver;
+    opacity: 73%;
+    justify-content: center;
 }
 
 .current {
@@ -50,4 +65,8 @@
     padding: 10px;
     margin: 10px;
     display: none;
+}
+
+#forcastDay{
+    font-size: 10px;
 }
