@@ -45,6 +45,8 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                 // add print data here
                 //add day value 
                 for (var i = 0; i < 100; i++) {
+                    // modulus only pulls wanted date intervals 
+                    if (i % 8 === 0  && i <= 40) {
                 const forcastDate = forcastData.list[i].dt_txt;
                 const forcastIcon = forcastData.list[i].weather[0].icon;
                 const forcastIconUrl = 'https://openweathermap.org/img/wn/'+ forcastIcon +'.png';
@@ -52,7 +54,7 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                 const forcastHumidity = JSON.stringify(forcastData.list[i].main.humidity);
                 const forcastWindSpeed = JSON.stringify(forcastData.list[i].wind.speed);
                 //print to page
-                futureWeatherSection.innerHTML += `<p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}</p><p>Humidity: ${forcastHumidity}</p>Wind Speed: ${forcastWindSpeed}</p>`;}
+                futureWeatherSection.innerHTML += `<div id="forcastDay${i}"><p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}</p><p>Humidity: ${forcastHumidity}</p>Wind Speed: ${forcastWindSpeed}</p></div>`;}}
                 // const forcastDate = forcastData.list[0].dt_txt;
                 // const forcastIcon = forcastData.list[0].weather[0].icon;
                 // const forcastIconUrl = 'https://openweathermap.org/img/wn/'+ forcastIcon +'.png';
