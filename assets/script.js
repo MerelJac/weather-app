@@ -11,10 +11,13 @@ const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 function processData() {
 // get input from search bar
 var input = locationInput.value;
+// edit CSS Styling dynamically 
 currentWeatherSection.style.display = "flex";
 futureWeatherSection.style.display = "flex";
 submitBtn.style.display = "none"
 regenBtn.style.display = "flex";
+locationInput.value = "";
+locationInput.placeholder = "Enter city";
 // convert city name to lat lon
 fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appid=' + apiKey)
 .then(function (locationResponse) {
@@ -38,7 +41,7 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                     const currentHumidity = JSON.stringify(currentData.main.humidity);
                     const currentWindSpeed = JSON.stringify(currentData.wind.speed);
                     // print to page
-                    currentWeatherSection.innerHTML += `<div class="current"><h2>${currentName}</h2><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>${currentDate}</p><p>Temp: ${currentTemp}</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed}</p></div>`;})
+                    currentWeatherSection.innerHTML += `<div class="current"><h2 id="currentCityName">${currentName}</h2><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>${currentDate}</p><p>Temp: ${currentTemp}</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed}</p></div>`;})
             // needs the http or you will get a CORS error // 5 day weather
             fetch('http://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon='+ lon + '&limit=5&units=imperial&appid=' + apiKey)
                 .then(function (forcastResponse){
@@ -60,7 +63,15 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                 futureWeatherSection.innerHTML += `<div id="forcastDay"><p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}</p><p>Humidity: ${forcastHumidity}</p>Wind Speed: ${forcastWindSpeed}</p></div>`;}}
                 })})};
 function localStorageRegenerateProcessData() {
+    // CSS Styling
     savedCitiesSection.style.display = "flex";
+    locationInput.value = "";
+    locationInput.placeholder = "Enter city";
+    // save text from input to local storage
+    cityInput = $("#currentCityName").text();
+    localStorage.setItem("city", cityInput);
+    // create button from location storage and print to page
+    savedCitiesSection.innerHTML += `<button id"savedCity">${localStorage.getItem("city")}</button>`
 }
 submitBtn.addEventListener("click", processData);
 regenBtn.addEventListener("click", localStorageRegenerateProcessData)
