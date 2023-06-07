@@ -24,7 +24,6 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
 .then(function (locationResponse) {
     return locationResponse.json()})
     .then(function (locationData) {
-        console.log(locationData);
         var lat = locationData[0].lat;
         var lon = locationData[0].lon;
         // current weather 
@@ -42,19 +41,22 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                     const currentHumidity = JSON.stringify(currentData.main.humidity);
                     const currentWindSpeed = Math.round(JSON.stringify(currentData.wind.speed));
                     // print to page
-                    currentWeatherSection.innerHTML += `<div class="current"><h2 id="currentCityName">${currentName}</h2><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>${currentDate}</p><p>Temp: ${currentTemp}\u00B0F</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed} mph</p></div>`;})
+                    currentWeatherSection.innerHTML += `<div class="current"><h2 id="currentCityName">${currentName}</h2><p>${currentDate}</p><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>Temp: ${currentTemp}\u00B0F</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed} mph</p></div>`;})
             // needs the http or you will get a CORS error // 5 day weather
             fetch('http://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon='+ lon + '&limit=5&units=imperial&appid=' + apiKey)
                 .then(function (forcastResponse){
                 return forcastResponse.json()})
                 .then(function(forcastData) {
-                console.log(forcastData);
                 //add day value 
                 for (var i = 0; i < 100; i++) {
                     // modulus only pulls wanted date intervals 
                     if (i % 8 === 0  && i <= 40) {
-                const forcastDate = forcastData.list[i].dt_txt;
-                console.log(forcastDate);
+                const pulledDate = forcastData.list[i].dt_txt;
+                // creates date variable 
+                var date = new Date(pulledDate);
+                var month = date.toLocaleString('default', {month: 'long'});
+                var day = date.getDate();
+                var forcastDate = `${month} ${day}`;
                 const forcastIcon = forcastData.list[i].weather[0].icon;
                 const forcastIconUrl = 'https://openweathermap.org/img/wn/'+ forcastIcon +'.png';
                 const forcastTemp = Math.round(JSON.stringify(forcastData.list[i].main.feels_like));
