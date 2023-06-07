@@ -4,6 +4,7 @@ var locationInput = document.querySelector('input[name="location-input"]');
 var currentWeatherSection = document.querySelector("#currentWeather");
 var futureWeatherSection = document.querySelector("#futureWeather");
 var savedCitiesSection = document.querySelector(".saved-cities");
+var savedCityButton = document.querySelector("#savedCity");
 
 var apiKey = "17476851cd3efca9f4c619dbaa03a7d6";
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -37,11 +38,11 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                     const currentName = currentData.name;
                     const currentIcon = currentData.weather[0].icon;
                     const iconUrl = 'https://openweathermap.org/img/wn/'+ currentIcon +'.png';
-                    const currentTemp = JSON.stringify(currentData.main.feels_like);
+                    const currentTemp = Math.round(JSON.stringify(currentData.main.feels_like));
                     const currentHumidity = JSON.stringify(currentData.main.humidity);
-                    const currentWindSpeed = JSON.stringify(currentData.wind.speed);
+                    const currentWindSpeed = Math.round(JSON.stringify(currentData.wind.speed));
                     // print to page
-                    currentWeatherSection.innerHTML += `<div class="current"><h2 id="currentCityName">${currentName}</h2><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>${currentDate}</p><p>Temp: ${currentTemp}</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed}</p></div>`;})
+                    currentWeatherSection.innerHTML += `<div class="current"><h2 id="currentCityName">${currentName}</h2><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>${currentDate}</p><p>Temp: ${currentTemp}\u00B0F</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed} mph</p></div>`;})
             // needs the http or you will get a CORS error // 5 day weather
             fetch('http://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon='+ lon + '&limit=5&units=imperial&appid=' + apiKey)
                 .then(function (forcastResponse){
@@ -56,18 +57,18 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appi
                 console.log(forcastDate);
                 const forcastIcon = forcastData.list[i].weather[0].icon;
                 const forcastIconUrl = 'https://openweathermap.org/img/wn/'+ forcastIcon +'.png';
-                const forcastTemp = JSON.stringify(forcastData.list[i].main.feels_like);
+                const forcastTemp = Math.round(JSON.stringify(forcastData.list[i].main.feels_like));
                 const forcastHumidity = JSON.stringify(forcastData.list[i].main.humidity);
-                const forcastWindSpeed = JSON.stringify(forcastData.list[i].wind.speed);
+                const forcastWindSpeed = Math.round(JSON.stringify(forcastData.list[i].wind.speed));
                 //print to page
-                futureWeatherSection.innerHTML += `<div id="forcastDay"><p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}</p><p>Humidity: ${forcastHumidity}</p>Wind Speed: ${forcastWindSpeed}</p></div>`;}}
+                futureWeatherSection.innerHTML += `<div id="forcastDay"><p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}\u00B0F</p><p>Humidity: ${forcastHumidity}</p>Wind Speed: ${forcastWindSpeed} mph</p></div>`;}}
                 })})};
 function localStorageRegenerateProcessData() {
     // save text from input to local storage
     cityInput = $("#currentCityName").text();
     localStorage.setItem("city", cityInput);
     // create button from location storage and print to page
-    savedCitiesSection.innerHTML += `<button id"savedCity">${localStorage.getItem("city")}</button>`
+    savedCitiesSection.innerHTML += `<button id="savedCity">${localStorage.getItem("city")}</button>`
     // clear old sections
     currentWeatherSection.innerHTML = "";
     futureWeatherSection.innerHTML = "";
@@ -79,5 +80,16 @@ function localStorageRegenerateProcessData() {
     locationInput.placeholder = "Enter city";
 }
 
+
+function runSavedCity() {
+    // clear old sections
+    currentWeatherSection.innerHTML = "";
+    futureWeatherSection.innerHTML = "";
+    console.log("clicked");
+}
+
+
 submitBtn.addEventListener("click", processData);
-regenBtn.addEventListener("click", localStorageRegenerateProcessData)
+regenBtn.addEventListener("click", localStorageRegenerateProcessData);
+// isn't working because it's not a global varibale (troubleshoot)
+savedCityButton.addEventListener("click", runSavedCity);
