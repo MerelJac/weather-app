@@ -16,7 +16,7 @@
 }
 
 #currentWeather {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     border: 2px solid black;
@@ -25,6 +25,10 @@
     opacity: 73%;
 }
 
+#weatherIcon {
+    width: 100px;
+    height: 100px;
+}
 #futureWeather {
     display: flex;
     flex-direction: column;
