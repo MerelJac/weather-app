@@ -120,6 +120,7 @@ body {
         font-size: 40px;
         max-width: 20vw;
         text-decoration: none;
+        color: black;
     }
     p {
         font-size: 30px;
@@ -134,5 +135,6 @@ body {
     .savedCity {
         font-size: 40px;
         text-decoration: none;
+        color: black;
     }
 }
