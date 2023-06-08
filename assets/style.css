@@ -75,6 +75,7 @@ body {
     padding: 10px;
     margin: 10px;
     display: flex;
+    align-items: center;
     opacity: 62%;
     border-radius: 15px;
     border: transparent;
@@ -84,6 +85,7 @@ body {
     padding: 10px;
     margin: 10px;
     display: none;
+    align-items: center;
     opacity: 62%;
     border-radius: 15px;
     border: transparent;
