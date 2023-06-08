@@ -4,7 +4,7 @@ var locationInput = document.querySelector('input[name="location-input"]');
 var currentWeatherSection = document.querySelector("#currentWeather");
 var futureWeatherSection = document.querySelector("#futureWeather");
 var savedCitiesSection = document.querySelector(".saved-cities");
-var savedCityButton = document.querySelector("#savedCity");
+var savedCityButton;
 
 var apiKey = "17476851cd3efca9f4c619dbaa03a7d6";
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -70,7 +70,11 @@ function localStorageRegenerateProcessData() {
     cityInput = $("#currentCityName").text();
     localStorage.setItem("city", cityInput);
     // create button from location storage and print to page
-    savedCitiesSection.innerHTML += `<button id="savedCity">${localStorage.getItem("city")}</button>`
+    savedCitiesSection.innerHTML += `<button id="savedCity">${localStorage.getItem("city")}</button>`;
+    // assign a new value to the already created variable
+    savedCityButton = document.querySelector("#savedCity");
+    // create event listener in the appropriate function 
+    savedCityButton.addEventListener("click", runSavedCity);
     // clear old sections
     currentWeatherSection.innerHTML = "";
     futureWeatherSection.innerHTML = "";
@@ -93,5 +97,4 @@ function runSavedCity() {
 
 submitBtn.addEventListener("click", processData);
 regenBtn.addEventListener("click", localStorageRegenerateProcessData);
-// isn't working because it's not a global varibale (troubleshoot)
-savedCityButton.addEventListener("click", runSavedCity);
+
