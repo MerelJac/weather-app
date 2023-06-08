@@ -9,9 +9,9 @@ var savedCityButton;
 var apiKey = "17476851cd3efca9f4c619dbaa03a7d6";
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-function processData() {
-// get input from search bar
-var input = locationInput.value;
+function processData(Merel) {
+// get input from search bar or info passed
+var input = locationInput.value || Merel;
 // edit CSS Styling dynamically 
 currentWeatherSection.style.display = "flex";
 futureWeatherSection.style.display = "flex";
@@ -20,7 +20,7 @@ regenBtn.style.display = "flex";
 locationInput.value = "";
 locationInput.placeholder = "Enter city";
 // convert city name to lat lon
-fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appid=' + apiKey)
+fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&appid=' + apiKey)
 .then(function (locationResponse) {
     return locationResponse.json()})
     .then(function (locationData) {
@@ -74,7 +74,9 @@ function localStorageRegenerateProcessData() {
     // assign a new value to the already created variable
     savedCityButton = document.querySelector("#savedCity");
     // create event listener in the appropriate function 
-    savedCityButton.addEventListener("click", runSavedCity);
+    savedCityButton.addEventListener("click", function(){
+        runSavedCity(cityInput);
+    });
     // clear old sections
     currentWeatherSection.innerHTML = "";
     futureWeatherSection.innerHTML = "";
@@ -87,14 +89,30 @@ function localStorageRegenerateProcessData() {
 }
 
 
-function runSavedCity() {
+function runSavedCity(Paul) {
     // clear old sections
     currentWeatherSection.innerHTML = "";
     futureWeatherSection.innerHTML = "";
     console.log("clicked");
+    processData(Paul);
 }
 
 
 submitBtn.addEventListener("click", processData);
 regenBtn.addEventListener("click", localStorageRegenerateProcessData);
 
+var arr = [
+    {
+        color: "blue", 
+        species: "stitch"
+    }, 
+    {
+        color: "green", 
+        species: "kiwi"
+    }
+]
+
+function alien(x, y){
+   
+    return x * y
+}
