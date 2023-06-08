@@ -109,3 +109,30 @@ body {
     border-radius: 15px;
     border: transparent;
 }
+
+@media screen and (min-width: 400px) {
+    input {
+        font-size: 80px;
+        max-width: 66vw;
+        text-decoration: none;
+    }
+    #submit-button, #regenerateButton {
+        font-size: 40px;
+        max-width: 20vw;
+        text-decoration: none;
+    }
+    p {
+        font-size: 30px;
+    }
+    h2 {
+        font-size: 50px;
+    }
+    #futureWeather {
+        display: none;
+        flex-wrap: wrap;
+    }
+    .savedCity {
+        font-size: 40px;
+        text-decoration: none;
+    }
+}

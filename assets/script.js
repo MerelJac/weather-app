@@ -41,7 +41,7 @@ fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&app
                     const currentHumidity = JSON.stringify(currentData.main.humidity);
                     const currentWindSpeed = Math.round(JSON.stringify(currentData.wind.speed));
                     // print to page
-                    currentWeatherSection.innerHTML += `<div class="current"><h2 id="currentCityName">${currentName}</h2><p>${currentDate}</p><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>Temp: ${currentTemp}\u00B0F</p><p>Humidity: ${currentHumidity}</p>Wind Speed: ${currentWindSpeed} mph</p></div>`;})
+                    currentWeatherSection.innerHTML += `<div class="current"><h2 id="currentCityName">${currentName}</h2><p>${currentDate}</p><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>Temp: ${currentTemp}\u00B0F</p><p>Humidity: ${currentHumidity}</p><p>Wind Speed: ${currentWindSpeed} mph</p></div>`;})
             // needs the http or you will get a CORS error // 5 day weather
             fetch('https://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon='+ lon + '&limit=5&units=imperial&appid=' + apiKey)
                 .then(function (forcastResponse){
@@ -63,7 +63,7 @@ fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&app
                 const forcastHumidity = JSON.stringify(forcastData.list[i].main.humidity);
                 const forcastWindSpeed = Math.round(JSON.stringify(forcastData.list[i].wind.speed));
                 //print to page
-                futureWeatherSection.innerHTML += `<div id="forcastDay"><p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}\u00B0F</p><p>Humidity: ${forcastHumidity}</p>Wind Speed: ${forcastWindSpeed} mph</p></div>`;}}
+                futureWeatherSection.innerHTML += `<div id="forcastDay"><p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}\u00B0F</p><p>Humidity: ${forcastHumidity}</p><p>Wind Speed: ${forcastWindSpeed} mph</p></div>`;}}
                 })})};
 function localStorageRegenerateProcessData() {
     // save text from input to local storage
