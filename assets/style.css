@@ -5,8 +5,10 @@
 }
 
 body {
-    background-image: url(../assets/images/moonbackground.jpg);
+    background-image: url(../assets/images/defalut-background.jpg);
     background-position: top;
+    background-repeat: no-repeat;
+    
 
 }
 .side-bar {
@@ -36,10 +38,10 @@ body {
     display: none;
     flex-direction: column;
     align-items: center;
-    border: 2px solid silver;
+    border: 2px solid white;
     border-radius: 30px;
-    background-color: silver;
-    opacity: 73%;
+    background-color: white;
+    opacity: 50%;
 }
 
 #weatherIcon {
@@ -50,10 +52,10 @@ body {
 #futureWeather {
     display: none;
     flex-direction: row;
-    border: 2px solid silver;
+    border: 2px solid white;
     border-radius: 30px;
-    background-color: silver;
-    opacity: 73%;
+    background-color: white;
+    opacity: 50%;
     justify-content: center;
 }
 
@@ -75,6 +77,7 @@ body {
     display: flex;
     opacity: 62%;
     border-radius: 15px;
+    border: transparent;
 }
 
 #regenerateButton {
@@ -83,6 +86,7 @@ body {
     display: none;
     opacity: 62%;
     border-radius: 15px;
+    border: transparent;
 }
 
 #forcastDay{
@@ -95,4 +99,13 @@ body {
 #location-input {
     opacity: 62%;
     border-radius: 15px;
+    border: transparent;
+}
+
+#savedCity {
+    padding: 10px;
+    margin: 10px;
+    opacity: 62%;
+    border-radius: 15px;
+    border: transparent;
 }
