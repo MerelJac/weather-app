@@ -70,14 +70,19 @@ function localStorageRegenerateProcessData() {
     cityInput = $("#currentCityName").text();
     localStorage.setItem("city", [cityInput]);
     // create button from location storage and print to page
-    savedCitiesSection.innerHTML += `<button class="savedCity">${localStorage.getItem("city")}</button>`;
+    savedCitiesSection.innerHTML += `<button class="savedCity" id=${localStorage.getItem("city")}>${localStorage.getItem("city")}</button>`;
     // assign a new value to the already created variable
-    savedCityButton = document.querySelector(".savedCity");
+    savedCityButton = document.getElementsByClassName("savedCity");
     // loop through all possible buttons with the same class
     // create event listener in the appropriate function 
-    savedCityButton.addEventListener("click", function(){
-        runSavedCity(cityInput);
-    });
+    for (var i = 0; i < savedCityButton.length; i++) {
+        // upon clicking, run this function  
+    savedCityButton[i].addEventListener("click", function(){
+        var closestButton = this.id;
+        var closestID = closestButton.toString();
+        console.log(closestID);
+        runSavedCity(closestID);
+    })};
     // clear old sections
     currentWeatherSection.innerHTML = "";
     futureWeatherSection.innerHTML = "";
@@ -101,5 +106,3 @@ function runSavedCity(cityName) {
 
 submitBtn.addEventListener("click", processData);
 regenBtn.addEventListener("click", localStorageRegenerateProcessData);
-
-
