@@ -9,9 +9,10 @@ var savedCityButton;
 var apiKey = "17476851cd3efca9f4c619dbaa03a7d6";
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-function processData(Merel) {
+function processData(newCity) {
 // get input from search bar or info passed
-var input = locationInput.value || Merel;
+var input = locationInput.value || newCity;
+console.log(input);
 // edit CSS Styling dynamically 
 currentWeatherSection.style.display = "flex";
 futureWeatherSection.style.display = "flex";
@@ -31,7 +32,6 @@ fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&app
             .then(function(currentResponse){
                 return currentResponse.json()})
                 .then(function (currentData){
-                    // add city name 
                     var today = dayjs();
                     var currentDate = today.format('ddd, MMMM D');
                     const currentName = currentData.name;
@@ -68,11 +68,12 @@ fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&app
 function localStorageRegenerateProcessData() {
     // save text from input to local storage
     cityInput = $("#currentCityName").text();
-    localStorage.setItem("city", cityInput);
+    localStorage.setItem("city", [cityInput]);
     // create button from location storage and print to page
-    savedCitiesSection.innerHTML += `<button id="savedCity">${localStorage.getItem("city")}</button>`;
+    savedCitiesSection.innerHTML += `<button class="savedCity">${localStorage.getItem("city")}</button>`;
     // assign a new value to the already created variable
-    savedCityButton = document.querySelector("#savedCity");
+    savedCityButton = document.querySelector(".savedCity");
+    // loop through all possible buttons with the same class
     // create event listener in the appropriate function 
     savedCityButton.addEventListener("click", function(){
         runSavedCity(cityInput);
@@ -89,30 +90,16 @@ function localStorageRegenerateProcessData() {
 }
 
 
-function runSavedCity(Paul) {
+function runSavedCity(cityName) {
     // clear old sections
     currentWeatherSection.innerHTML = "";
     futureWeatherSection.innerHTML = "";
     console.log("clicked");
-    processData(Paul);
+    processData(cityName);
 }
 
 
 submitBtn.addEventListener("click", processData);
 regenBtn.addEventListener("click", localStorageRegenerateProcessData);
 
-var arr = [
-    {
-        color: "blue", 
-        species: "stitch"
-    }, 
-    {
-        color: "green", 
-        species: "kiwi"
-    }
-]
 
-function alien(x, y){
-   
-    return x * y
-}
