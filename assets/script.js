@@ -12,7 +12,6 @@ const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 function processData(newCity) {
 // get input from search bar or info passed
 var input = locationInput.value || newCity;
-console.log(input);
 // edit CSS Styling dynamically 
 currentWeatherSection.style.display = "flex";
 futureWeatherSection.style.display = "flex";
@@ -67,7 +66,7 @@ fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&app
                 })})};
 function localStorageRegenerateProcessData() {
     // save text from input to local storage
-    cityInput = $("#currentCityName").text();
+    var cityInput = $("#currentCityName").text();
     localStorage.setItem("city", [cityInput]);
     // create button from location storage and print to page
     savedCitiesSection.innerHTML += `<button class="savedCity" id=${localStorage.getItem("city")}>${localStorage.getItem("city")}</button>`;
@@ -80,7 +79,6 @@ function localStorageRegenerateProcessData() {
     savedCityButton[i].addEventListener("click", function(){
         var closestButton = this.id;
         var closestID = closestButton.toString();
-        console.log(closestID);
         runSavedCity(closestID);
     })};
     // clear old sections
@@ -99,7 +97,6 @@ function runSavedCity(cityName) {
     // clear old sections
     currentWeatherSection.innerHTML = "";
     futureWeatherSection.innerHTML = "";
-    console.log("clicked");
     processData(cityName);
 }
 
