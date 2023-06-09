@@ -24,6 +24,12 @@ fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&app
 .then(function (locationResponse) {
     return locationResponse.json()})
     .then(function (locationData) {
+        // if city name is wrong and locationData is empty, hit this alter
+        if (locationData.length === 0) {
+            alert("City not found. Please try again");
+            // reloads current URl 
+            location.reload();
+        }
         var lat = locationData[0].lat;
         var lon = locationData[0].lon;
         // current weather 
