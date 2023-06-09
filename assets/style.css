@@ -79,6 +79,7 @@ body {
     opacity: 62%;
     border-radius: 15px;
     border: transparent;
+    color: grey;
 }
 
 #regenerateButton {
