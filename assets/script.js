@@ -49,7 +49,7 @@ fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&app
                 //add day value 
                 for (var i = 0; i < 100; i++) {
                     // modulus only pulls wanted date intervals 
-                    if (i % 8 === 0  && i <= 40) {
+                    if (i % 8 === 0  && i < 40) {
                 const pulledDate = forcastData.list[i].dt_txt;
                 // creates date variable 
                 var date = new Date(pulledDate);
