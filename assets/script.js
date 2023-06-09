@@ -43,10 +43,28 @@ fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&app
                     const currentIcon = currentData.weather[0].icon;
                     const iconUrl = 'https://openweathermap.org/img/wn/'+ currentIcon +'.png';
                     const currentTemp = Math.round(JSON.stringify(currentData.main.feels_like));
+                    // funny jokes
+                    var clothing = "";
+                    if (currentTemp >= 95) {clothing = "hydrate or dydrate"} 
+                    else if (currentTemp >= 90) {clothing = "Your dog doesn't even want to go outside"} 
+                    else if (currentTemp >= 85) {clothing = "Extra deodorant & sunscreen today"} 
+                    else if (currentTemp >= 80) {clothing = "Iced latte's only"} 
+                    else if (currentTemp >= 75) {clothing = "Sunglasses"} 
+                    else if (currentTemp >= 70) {clothing = "Good day for outside time"} 
+                    else if (currentTemp >=60) {clothing = "Order your coffee hot, not iced"} 
+                    else if (currentTemp >= 65) {clothing = "Sweater Weather"} 
+                    else if (currentTemp >= 55) {clothing = "Closed toe shoes for sure"} 
+                    else if (currentTemp >= 50) {clothing = "You might want a jacket"} 
+                    else if (currentTemp >= 45) {clothing = "Socks, hat, gloves - bundle up"} 
+                    else if (currentTemp >= 40) {clothing = "Soup for dinner?"} 
+                    else if (currentTemp >= 35) {clothing = "Your car will tell you it's freezing"} 
+                    else if (currentTemp >= 30) {clothing = "Ski season?"} 
+                    else if (currentTemp >= 25) {clothing = "Maybe it's an inside day"} 
+                    else {clothing = "Why even check the weather..."};
                     const currentHumidity = JSON.stringify(currentData.main.humidity);
                     const currentWindSpeed = Math.round(JSON.stringify(currentData.wind.speed));
                     // print to page
-                    currentWeatherSection.innerHTML += `<div class="current"><h2 id="currentCityName">${currentName}</h2><p>${currentDate}</p><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>Temp: ${currentTemp}\u00B0F</p><p>Humidity: ${currentHumidity}</p><p>Wind Speed: ${currentWindSpeed} mph</p></div>`;})
+                    currentWeatherSection.innerHTML += `<div class="current"><h2 id="currentCityName">${currentName}</h2><p>${currentDate}</p><img id="weatherIcon" src="${iconUrl}" alt="weatherIconCurrent"></div><div class="infoCurrent"><p>Temp: ${currentTemp}\u00B0F</p><p>Humidity: ${currentHumidity}</p><p>Wind Speed: ${currentWindSpeed} mph</p><p>${clothing}</p></div>`;})
             // needs the http or you will get a CORS error // 5 day weather
             fetch('https://api.openweathermap.org/data/2.5/forecast?lat='+ lat + '&lon='+ lon + '&limit=5&units=imperial&appid=' + apiKey)
                 .then(function (forcastResponse){
@@ -65,10 +83,27 @@ fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=1&app
                 const forcastIcon = forcastData.list[i].weather[0].icon;
                 const forcastIconUrl = 'https://openweathermap.org/img/wn/'+ forcastIcon +'.png';
                 const forcastTemp = Math.round(JSON.stringify(forcastData.list[i].main.feels_like));
+                var clothingForecast = "";
+                if (forcastTemp >= 95) {clothingForecast = "hydrate or dydrate"} 
+                else if (forcastTemp >= 90) {clothingForecast = "Your dog doesn't even want to go outside"} 
+                else if (forcastTemp >= 85) {clothingForecast = "Extra deodorant & sunscreen today"} 
+                else if (forcastTemp >= 80) {clothingForecast = "Iced latte's only"} 
+                else if (forcastTemp >= 75) {clothingForecast = "Sunglasses required"} 
+                else if (forcastTemp >= 70) {clothingForecast = "Good day for outside time"} 
+                else if (forcastTemp >=60) {clothingForecast = "Order your coffee hot, not iced"} 
+                else if (forcastTemp >= 65) {clothingForecast = "Sweater Weather"} 
+                else if (forcastTemp >= 55) {clothingForecast = "Closed toe shoes for sure"} 
+                else if (forcastTemp >= 50) {clothingForecast = "You might want a jacket"} 
+                else if (forcastTemp >= 45) {clothingForecast = "Socks, hat, gloves - bundle up"} 
+                else if (forcastTemp >= 40) {clothingForecast = "Soup for dinner?"} 
+                else if (forcastTemp >= 35) {clothingForecast = "Your car will tell you it's freezing"} 
+                else if (forcastTemp >= 30) {clothingForecast = "Ski season?"} 
+                else if (forcastTemp >= 25) {clothingForecast = "Maybe it's an inside day"} 
+                else {clothingForecast = "Why even check the weather..."};
                 const forcastHumidity = JSON.stringify(forcastData.list[i].main.humidity);
                 const forcastWindSpeed = Math.round(JSON.stringify(forcastData.list[i].wind.speed));
                 //print to page
-                futureWeatherSection.innerHTML += `<div id="forcastDay"><p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}\u00B0F</p><p>Humidity: ${forcastHumidity}</p><p>Wind Speed: ${forcastWindSpeed} mph</p></div>`;}}
+                futureWeatherSection.innerHTML += `<div id="forcastDay"><p>${forcastDate}</p><img id="weatherIcon" src="${forcastIconUrl}" alt="weatherIconCurrent"><p>Temp: ${forcastTemp}\u00B0F</p><p>Humidity: ${forcastHumidity}</p><p>Wind Speed: ${forcastWindSpeed} mph</p><p>${clothingForecast}</p></div>`;}}
                 })})};
 function localStorageRegenerateProcessData() {
     // save text from input to local storage
